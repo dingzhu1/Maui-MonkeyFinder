@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<c:StandardPage
+    x:Class="Maui_MonkeyFinder.View.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:c="clr-namespace:Maui_MonkeyFinder.Controls"
+    xmlns:model="clr-namespace:Maui_MonkeyFinder.Model"
+    xmlns:s="clr-namespace:Maui_MonkeyFinder"
+    xmlns:str="clr-namespace:Maui_MonkeyFinder.Resources.Strings"
+    xmlns:viewModel="clr-namespace:Maui_MonkeyFinder.ViewModel"
+    Title="{Binding Title}"
+    x:DataType="viewModel:MonkeysViewModel">
+
+    <Grid RowDefinitions="*,Auto">
+        <RefreshView
+            Grid.ColumnSpan="2"
+            Command="{Binding GetMonkeysCommand}"
+            IsRefreshing="{Binding IsRefreshing}">
+
+            <CollectionView ItemsSource="{Binding Monkeys}" SelectionMode="None">
+                <CollectionView.EmptyView>
+                    <StackLayout Padding="100">
+                        <Image
+                            HeightRequest="{StaticResource LargeSquareImageSize}"
+                            HorizontalOptions="Center"
+                            Source="nodata.png"
+                            VerticalOptions="Center"
+                            WidthRequest="{StaticResource LargeSquareImageSize}" />
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                <!--<CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" />
+                -->
+                <!--<GridItemsLayout Orientation="Horizontal" Span="3" />-->
+                <!--
+                </CollectionView.ItemsLayout>-->
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Monkey">
+                        <Grid Padding="{StaticResource StandardItemPadding}" HorizontalOptions="Fill">
+                            <s:CardView HeightRequest="{StaticResource SmallSquareImageSize}">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:MonkeysViewModel}}, x:DataType=viewModel:MonkeysViewModel, Path=GoToDetailsCommand}" CommandParameter="{Binding .}" />
+                                </Border.GestureRecognizers>
+                                <Grid Padding="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="{StaticResource SmallSquareImageSize}" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image
+                                        Aspect="AspectFill"
+                                        HeightRequest="{StaticResource SmallSquareImageSize}"
+                                        Source="{Binding Image}"
+                                        WidthRequest="{StaticResource SmallSquareImageSize}" />
+                                    <VerticalStackLayout
+                                        Grid.Column="1"
+                                        Padding="{StaticResource StandardItemPadding}"
+                                        VerticalOptions="Center">
+                                        <s:Heading Text="{Binding Name}" />
+                                        <s:Heading Text="{Binding Location}" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </s:CardView>
+                            <!--<Border HeightRequest="125" Style="{StaticResource CardView}">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:MonkeysViewModel}}, x:DataType=viewModel:MonkeysViewModel, Path=GoToDetailsCommand}" CommandParameter="{Binding .}" />
+                                </Border.GestureRecognizers>
+                                <Grid Padding="0" ColumnDefinitions="125,*">
+                                    <Image
+                                        Aspect="AspectFill"
+                                        HeightRequest="125"
+                                        Source="{Binding Image}"
+                                        WidthRequest="125" />
+                                    <VerticalStackLayout
+                                        Grid.Column="1"
+                                        Padding="10"
+                                        VerticalOptions="Center">
+                                        <Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
+                                        <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Border>-->
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </RefreshView>
+
+        <HorizontalStackLayout
+            x:Name="RowOfButtons"
+            Grid.Row="1"
+            HorizontalOptions="Center"
+            Spacing="21">
+            <s:StandardButton
+                Command="{Binding GetMonkeysCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                Text="{x:Static str:UiText.GetMokeysButtonContent}" />
+
+            <s:StandardButton
+                Command="{Binding GetClosestMonkeyCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                Text="{x:Static str:UiText.FindClosestButtonContent}" />
+        </HorizontalStackLayout>
+
+        <ActivityIndicator
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="Center" />
+    </Grid>
+    <!--<CollectionView>
+        <CollectionView.ItemsSource>
+            <x:Array Type="{x:Type model:Monkey}">
+                <model:Monkey
+                    Name="Baboon"
+                    Image="https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/baboon.jpg"
+                    Location="Africa and Asia" />
+                <model:Monkey
+                    Name="Capuchin Monkey"
+                    Image="https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/capuchin.jpg"
+                    Location="Central and South America" />
+                <model:Monkey
+                    Name="Red-shanked douc"
+                    Image="https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/douc.jpg"
+                    Location="Vietnam" />
+            </x:Array>
+        </CollectionView.ItemsSource>
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="model:Monkey">
+                <HorizontalStackLayout Padding="10">
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="100"
+                        Source="{Binding Image}"
+                        WidthRequest="100" />
+                    <VerticalStackLayout
+                        Grid.Column="1"
+                        Padding="10"
+                        VerticalOptions="Center">
+                        <Label Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
+                        <Label Style="{StaticResource MediumLabel}" Text="{Binding Location}" />
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>-->
+</c:StandardPage>
