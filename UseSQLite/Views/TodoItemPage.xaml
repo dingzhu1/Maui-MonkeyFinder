@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="UseSQLite.Views.TodoItemPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:data="clr-namespace:UseSQLite.Data"
+    x:DataType="data:TodoItem">
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="10"
+            VerticalOptions="StartAndExpand">
+            <Label Text="Name" />
+            <Entry FontSize="Large" Text="{Binding Name}" />
+            <Label Text="Notes" />
+            <Entry FontSize="Large" Text="{Binding Notes}" />
+            <Label Text="Done" />
+            <Switch IsToggled="{Binding Done}" />
+            <Button Clicked="OnSaveClicked" Text="Save" />
+            <Button Clicked="OnDeleteClicked" Text="Delete" />
+            <Button Clicked="CancelClicked" Text="Cancel" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="UseSQLite.Views.TodoListPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:data="clr-namespace:UseSQLite.Data"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    Title="TodoListPage"
+    ios:Page.UseSafeArea="True">
+    <Grid RowDefinitions="*,Auto">
+        <CollectionView
+            Grid.Row="0"
+            ItemsLayout="VerticalList"
+            ItemsSource="{Binding Items}"
+            SelectionChanged="CollectionView_SelectionChanged"
+            SelectionMode="Single"
+            VerticalOptions="Fill">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="data:TodoItem">
+                    <Grid Padding="10" ColumnDefinitions="*,Auto">
+                        <Label Text="{Binding Name}" VerticalTextAlignment="Center" />
+                        <Label
+                            Grid.Column="1"
+                            IsVisible="{Binding Done}"
+                            Text="√"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button
+            Grid.Row="1"
+            Margin="20"
+            Text="Add New Item"
+            Clicked="AddNewItem_Clicked" />
+    </Grid>
+</ContentPage>
