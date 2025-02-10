@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="UseControlTemplate.Controls.CardViewUI"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="this">
+    <Frame
+        Padding="8"
+        BackgroundColor="{Binding CardColor}"
+        BindingContext="{x:Reference this}"
+        BorderColor="{Binding BorderColor}"
+        CornerRadius="5"
+        HasShadow="True"
+        HorizontalOptions="Center"
+        VerticalOptions="Center">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75" />
+                <RowDefinition Height="4" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="75" />
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+            <Frame
+                BackgroundColor="{Binding IconBackgroundColor, FallbackValue='Gray'}"
+                BorderColor="{Binding BorderColor, FallbackValue='Black'}"
+                CornerRadius="38"
+                HeightRequest="60"
+                HorizontalOptions="Center"
+                IsClippedToBounds="True"
+                VerticalOptions="Center"
+                WidthRequest="60">
+                <Image
+                    Margin="-20"
+                    Aspect="AspectFill"
+                    HeightRequest="100"
+                    Source="{Binding IconImageSource}"
+                    WidthRequest="100" />
+            </Frame>
+            <Label
+                Grid.Column="1"
+                FontAttributes="Bold"
+                FontSize="20"
+                HorizontalTextAlignment="Start"
+                Text="{Binding CardTitle, FallbackValue='Card title'}"
+                VerticalTextAlignment="Center" />
+            <BoxView
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                BackgroundColor="{Binding BorderColor, FallbackValue='Black'}"
+                HeightRequest="2"
+                HorizontalOptions="Fill" />
+            <Label
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                HorizontalOptions="Fill"
+                Text="{Binding CardDescription, FallbackValue='Card description'}"
+                VerticalOptions="Fill"
+                VerticalTextAlignment="Start" />
+        </Grid>
+    </Frame>
+</ContentView>

@@ -12,5 +12,7 @@ namespace UseSQLite.Data
         public string  Notes { get; set; }
 
         public bool Done { get; set; }
+
+
     }
 }

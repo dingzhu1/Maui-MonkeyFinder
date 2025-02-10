@@ -1,13 +1,10 @@
-﻿using UseSQLite.Data;
-using UseSQLite.Views;
+﻿using Microsoft.Extensions.Logging;
 
-
-
-namespace UseSQLite
+namespace UseControlTemplate
 {
     public static class MauiProgram
     {
-        internal static MauiApp CreateMauiApp()
+        public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
             builder
@@ -18,10 +15,9 @@ namespace UseSQLite
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-            builder.Services.AddSingleton<TodoListPage>();
-            builder.Services.AddTransient<TodoItemPage>();
-
-            builder.Services.AddSingleton<TodoItemDatabase>();
+#if DEBUG
+    		builder.Logging.AddDebug();
+#endif
 
             return builder.Build();
         }

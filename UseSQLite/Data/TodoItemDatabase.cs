@@ -68,5 +68,9 @@ namespace UseSQLite.Data
             await Init();
             return await connection.DeleteAsync(item);
         }
+
+
+        
+
     }
 }

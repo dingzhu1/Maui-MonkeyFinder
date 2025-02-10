@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="UseBehaviors.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:UseBehaviors.Behaviors"
+    xmlns:local="clr-namespace:UseBehaviors.Views"
+    Title="Behavior demos"
+    Padding="10">
+
+    <TableView Intent="Menu">
+        <TableRoot>
+            <TableSection Title="Behaviors">
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:AttachedNumericValidationPage}"
+                    Text="Attached behavior" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:NumericValidationPage}"
+                    Text=".NET MAUI behavior" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:NumericValidationStylePage}"
+                    Text=".NET MAUI behavior with a style" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:EventToCommandBehaviorPage}"
+                    Text="Event to command behavior" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:PlatformBehaviorPage}"
+                    Text="Platform behavior" />
+
+
+            </TableSection>
+        </TableRoot>
+    </TableView>
+</ContentPage>

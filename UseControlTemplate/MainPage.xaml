@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="UseControlTemplate.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:UseControlTemplate.Views"
+    Title="ControlTemplate Demos">
+
+
+    <TableView Intent="Menu">
+        <TableRoot>
+            <TableSection Title="ControlTemplate Demos">
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:TemplateBindingCardViewPage}"
+                    Detail="Using TemplateBinding"
+                    Text="Templated CardView" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:RelativeSourceBindingCardViewPage}"
+                    Detail="Using RelativeSource binding"
+                    Text="Templated CardView" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:ControlTemplateStylePage}"
+                    Detail="ControlTemplate as a style"
+                    Text="Templated CardView" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:ReplaceTemplateCardViewPage}"
+                    Detail="Redefine a control's UI"
+                    Text="Templated CardView" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:BindToViewModelPage}"
+                    Detail="Using RelativeSource TemplatedParent"
+                    Text="Bind a ControlTemplate to a ViewModel" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:ContentPresenterPage}"
+                    Detail="Add content to the ControlTemplate"
+                    Text="ContentPresenter demo" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type local:AccessTemplateElementPage}"
+                    Detail="Get a named element from the ControlTemplate"
+                    Text="Change a ControlTemplate at runtime" />
+            </TableSection>
+        </TableRoot>
+    </TableView>
+</ContentPage>
