@@ -3,11 +3,68 @@
     x:Class="UseControlTemplate.Views.BindToViewModelPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="BindToViewModelPage">
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" />
-    </VerticalStackLayout>
+    xmlns:controls="clr-namespace:UseControlTemplate.Controls"
+    xmlns:local="clr-namespace:UseControlTemplate.ViewModels"
+    Title="Bind to a ViewModel">
+    <ContentPage.BindingContext>
+        <local:PeopleViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ControlTemplate x:Key="CardViewControlTemplate">
+            <Border
+                Padding="8"
+                Background="{Binding CardColor}"
+                BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
+                HorizontalOptions="Center"
+                Stroke="{Binding BorderColor}"
+                StrokeShape="RoundRectangle 12,12,12,12"
+                StrokeThickness="1"
+                VerticalOptions="Center">
+                <Border.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.8"
+                        Radius="14"
+                        Offset="10,10" />
+                </Border.Shadow>
+                <Grid ColumnDefinitions="275" RowDefinitions="75,4,Auto">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        HorizontalTextAlignment="Start"
+                        Text="{Binding CardTitle}"
+                        VerticalTextAlignment="Center" />
+                    <BoxView
+                        Grid.Row="1"
+                        BackgroundColor="{Binding BorderColor}"
+                        HeightRequest="2"
+                        HorizontalOptions="Fill" />
+                    <Label
+                        Grid.Row="2"
+                        HorizontalOptions="Fill"
+                        Text="{Binding CardDescription}"
+                        VerticalOptions="Fill"
+                        VerticalTextAlignment="Start" />
+                    <Button
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:PeopleViewModel}}, Path=DeletePersonCommand}"
+                        CommandParameter="{Binding CardTitle}"
+                        HorizontalOptions="End"
+                        Text="Delete" />
+                </Grid>
+            </Border>
+        </ControlTemplate>
+        <DataTemplate x:Key="PersonTemplate">
+            <controls:CardView
+                BorderColor="DarkGray"
+                CardDescription="{Binding Description}"
+                CardTitle="{Binding Name}"
+                ControlTemplate="{StaticResource CardViewControlTemplate}" />
+        </DataTemplate>
+
+    </ContentPage.Resources>
+    <VerticalStackLayout
+        Margin="30"
+        BindableLayout.ItemTemplate="{StaticResource PersonTemplate}"
+        BindableLayout.ItemsSource="{Binding People}"
+        Spacing="30" />
 </ContentPage>

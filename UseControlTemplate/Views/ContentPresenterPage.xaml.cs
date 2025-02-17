@@ -1,6 +1,8 @@
+using UseControlTemplate.Controls;
+
 namespace UseControlTemplate.Views;
 
-public partial class ContentPresenterPage : ContentPage
+public partial class ContentPresenterPage : HeaderFooterPage
 {
 	public ContentPresenterPage()
 	{

@@ -1,15 +1,20 @@
-﻿namespace UseControlTemplate
+﻿using System.Windows.Input;
+
+namespace UseControlTemplate
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
+        public ICommand NavigateCommand { get; private set; }
 
         public MainPage()
         {
             InitializeComponent();
+            NavigateCommand = new Command<Type>(async (Type pageType) =>
+            {
+                Page page = Activator.CreateInstance(pageType) as Page;
+                await Navigation.PushAsync(page);
+            });
+            BindingContext = this;
         }
-
-       
     }
-
 }

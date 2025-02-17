@@ -1,12 +1,106 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="UseControlTemplate.Views.RelativeSourceBindingCardViewPage"
-             Title="RelativeSourceBindingCardViewPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+<ContentPage
+    x:Class="UseControlTemplate.Views.RelativeSourceBindingCardViewPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:UseControlTemplate.Controls"
+    Title="RelativeSource CardView">
+    <ContentPage.Resources>
+        <ControlTemplate x:Key="CardViewControlTemplate">
+            <!--
+                In this example, the frame's BindingContext is set to the control instance that the template is applied to.
+                Therefore,the binding expressions resolve against the properties of each CardView object.
+                在此示例中，框架的 BindingContext 设置为模板应用到的控件实例。
+                因此，绑定表达式会根据每个 CardView 对象的属性进行解析。
+            -->
+            <Border
+                Padding="8"
+                Background="{Binding CardColor}"
+                BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
+                HorizontalOptions="Center"
+                Stroke="{Binding BorderColor}"
+                StrokeShape="RoundRectangle 12,12,12,12"
+                StrokeThickness="1"
+                VerticalOptions="Center">
+                <Border.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.8"
+                        Radius="14"
+                        Offset="10,10" />
+                </Border.Shadow>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="75" />
+                        <RowDefinition Height="4" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="75" />
+                        <ColumnDefinition Width="200" />
+                    </Grid.ColumnDefinitions>
+                    <Border
+                        Background="{Binding IconBackgroundColor}"
+                        HeightRequest="60"
+                        HorizontalOptions="Center"
+                        Stroke="{Binding BorderColor}"
+                        StrokeShape="RoundRectangle 30,30,30,30"
+                        StrokeThickness="1"
+                        VerticalOptions="Center"
+                        WidthRequest="60">
+                        <Image
+                            Margin="-20"
+                            Aspect="AspectFill"
+                            HeightRequest="60"
+                            Source="{Binding IconImageSource}"
+                            WidthRequest="60" />
+                    </Border>
+                    <Label
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        HorizontalTextAlignment="Start"
+                        Text="{Binding CardTitle}"
+                        VerticalTextAlignment="Center" />
+                    <BoxView
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        BackgroundColor="{Binding BorderColor}"
+                        HeightRequest="2"
+                        HorizontalOptions="Fill" />
+                    <Label
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        HorizontalOptions="Fill"
+                        Text="{Binding CardDescription}"
+                        VerticalOptions="Fill"
+                        VerticalTextAlignment="Start" />
+                </Grid>
+
+            </Border>
+        </ControlTemplate>
+    </ContentPage.Resources>
+    <VerticalStackLayout Margin="30" Spacing="30">
+        <controls:CardView
+            BorderColor="DarkGray"
+            CardDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla elit dolor, convallis non interdum."
+            CardTitle="John Doe"
+            ControlTemplate="{StaticResource CardViewControlTemplate}"
+            IconBackgroundColor="SlateGray"
+            IconImageSource="user.png" />
+        <controls:CardView
+            BorderColor="DarkGray"
+            CardDescription="Phasellus eu convallis mi. In tempus augue eu dignissim fermentum. Morbi ut lacus vitae eros lacinia."
+            CardTitle="Jane Doe"
+            ControlTemplate="{StaticResource CardViewControlTemplate}"
+            IconBackgroundColor="SlateGray"
+            IconImageSource="user.png" />
+        <controls:CardView
+            BorderColor="DarkGray"
+            CardDescription="Aliquam sagittis, odio lacinia fermentum dictum, mi erat scelerisque erat, quis aliquet arcu."
+            CardTitle=".NET Bot"
+            ControlTemplate="{StaticResource CardViewControlTemplate}"
+            IconBackgroundColor="SlateGray"
+            IconImageSource="user.png" />
     </VerticalStackLayout>
 </ContentPage>
