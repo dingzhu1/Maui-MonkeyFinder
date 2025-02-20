@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="UseDataBinding.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:UseDataBinding.Views"
+    Title="Data Binding demos"
+    Padding="10">
+    <TableView Intent="Menu">
+        <TableRoot>
+            <TableSection Title="Basic Bindings">
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:BasicCodeBindingPage}"
+                    Detail="Define a data-binding in code"
+                    Text="Basic Code Binding" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:BasicXamlBindingPage}"
+                    Detail="Define a data-binding in code"
+                    Text="Basic XAML Binding" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:AlternativeCodeBindingPage}"
+                    Detail="Define a data-binding in code without a BindingContext"
+                    Text="Alternative Code Binding" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:AlternativeXamlBindingPage}"
+                    Detail="Define a data-binding in XAML without a BindingContext"
+                    Text="Alternative XAML Binding" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:BindingContextInheritancePage}"
+                    Detail="Simplify bindings with an inherited BindingContext"
+                    Text="BindingContext Inheritance" />
+            </TableSection>
+            <TableSection Title="Binding Mode">
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:ReverseBindingPage}"
+                    Detail="Reverse the source and the target"
+                    Text="Reverse Binding" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:SimpleColorSelectorPage}"
+                    Detail="Use a ViewModel for HSL Color"
+                    Text="Simple Color Selector" />
+            </TableSection>
+            <TableSection Title="String Formatting">
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:StringFormattingPage}"
+                    Detail="Use standard .NET formatting specfications"
+                    Text="String Formatting" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:BetterColorSelectorPage}"
+                    Detail="Display Slider values for HSL Color"
+                    Text="Better Color Selector" />
+            </TableSection>
+
+            <TableSection Title="Binding Path">
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:PathVariationsPage}"
+                    Detail="Explore the various ways you can use Path"
+                    Text="Path Variations" />
+            </TableSection>
+
+            <TableSection Title="Binding Value Converters">
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:EnableButtonsPage}"
+                    Detail="Use a value converter to enable buttons"
+                    Text="Enable Buttons" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:SwitchIndicatorsPage}"
+                    Detail="Show the value of a Switch in various ways"
+                    Text="Switch Indicators" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:RgbColorSelectorPage}"
+                    Detail="Display hexadecimal color components"
+                    Text="RGB Color Selector" />
+            </TableSection>
+
+            <TableSection Title="Relative Bindings">
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:RelativeSourceSelfPage}"
+                    Detail="Define the binding source using Self mode"
+                    Text="Relative bindings to self" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:RelativeSourceFindAncestorPage}"
+                    Detail="Define the binding source using FindAncestor mode"
+                    Text="Relative bindings to an ancestor" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:RelativeSourceTemplatedParentPage}"
+                    Detail="Define the binding source using TemplatedParent mode"
+                    Text="Relative bindings to a templated parent" />
+            </TableSection>
+
+            <TableSection Title="Binding Fallbacks">
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:MonkeysPage}"
+                    Detail="Provide values for bindings that fail"
+                    Text="TargetNullValue and FallbackValue" />
+            </TableSection>
+
+            <TableSection Title="Multi Bindings">
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:MultiBindingStringFormatPage}"
+                    Detail="Combine strings from a MultiBinding"
+                    Text="String Formatting" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:MultiBindingStringFormatCodePage}"
+                    Detail="Combine strings from a MultiBinding"
+                    Text="String Formatting (Code)" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:MultiBindingConverterPage}"
+                    Detail="Use a multi value converter to set the CheckBox.IsChecked property"
+                    Text="Multi Value Converters" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:MultiBindingConverterCodePage}"
+                    Detail="使用多值转换器设置 CheckBox.IsChecked 属性"
+                    Text="Multi Value Converters (Code)" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:NestedMultiBindingPage}"
+                    Detail="嵌套多个绑定以设置 CheckBox.IsChecked 属性"
+                    Text="Nest Multi Bindings" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:MultiBindingFallbackValuePage}"
+                    Detail=" 为失败的 multi bindings 提供值"
+                    Text="Binding Fallbacks" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:RelativeSourceMultiBindingPage}"
+                    Detail="使用相对多重绑定到模板化父级"
+                    Text="RelativeSource Bindings" />
+            </TableSection>
+
+            <TableSection Title="Commanding">
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:PersonEntryPage}"
+                    Detail="在视图模型中使用 Command 接口"
+                    Text="Person Entry" />
+
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:DecimalKeypadPage}"
+                    Detail="使用键盘的 Command 接口"
+                    Text="Decimal Keypad" />
+            </TableSection>
+
+            <TableSection Title="Compiled Bindings">
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:CompiledColorListPage}"
+                    Detail="在 DataTemplate 中使用已编译的绑定"
+                    Text="Compiled color list" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:CompiledColorSelectorPage}"
+                    Detail="将已编译的绑定与 ViewModel 结合使用"
+                    Text="Compiled color selector" />
+                <TextCell
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:MixedBindingsPage}"
+                    Detail="将已编译的绑定与常规绑定一起使用"
+                    Text="Mixed bindings color selector" />
+            </TableSection>
+        </TableRoot>
+    </TableView>
+</ContentPage>

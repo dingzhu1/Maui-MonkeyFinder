@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="UseDataBinding.Views.MonkeyDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="MonkeyDetailsPage">
+    <ScrollView>
+        <StackLayout Margin="20">
+            <Label
+                HorizontalOptions="Center"
+                Style="{DynamicResource TitleStyle}"
+                Text="{Binding Name}" />
+            <Label
+                FontAttributes="Italic"
+                HorizontalOptions="Center"
+                Text="{Binding Location, TargetNullValue={StaticResource locationUnknown}}" />
+            <Label
+                HorizontalOptions="Center"
+                Text="{Binding Population, FallbackValue={StaticResource populationUnknown}}"
+                TextColor="Red" />
+            <Image
+                HeightRequest="200"
+                HorizontalOptions="Center"
+                Source="{Binding ImageUrl, TargetNullValue={StaticResource fallbackImageUrl}}"
+                WidthRequest="200" />
+            <Label Style="{DynamicResource BodyStyle}" Text="{Binding Details}" />
+            <Label HorizontalOptions="Center" TextColor="Red">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Mischievous monkey: " />
+                        <Span Text="{Binding IsMischievous, TargetNullValue={StaticResource unknown}}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

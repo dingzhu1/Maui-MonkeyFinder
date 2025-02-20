@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="UseDataBinding.Views.RelativeSourceMultiBindingPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:UseDataBinding.Controls"
+    xmlns:converters="clr-namespace:UseDataBinding.Converters"
+    xmlns:viewModels="clr-namespace:UseDataBinding.ViewModels"
+    Title="RelativeSourceMultiBindingPage"
+    Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <converters:AllTrueMultiConverter x:Key="AllTrueConverter" />
+
+        <ControlTemplate x:Key="CardViewExpanderControlTemplate">
+            <controls:Expander
+                Padding="8"
+                BackgroundColor="{Binding CardColor}"
+                BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
+                IsExpanded="{Binding IsExpanded, Source={RelativeSource TemplatedParent}}"
+                RowDefinitions="Auto,Auto">
+                <controls:Expander.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnTapGestureRecognized" />
+                </controls:Expander.GestureRecognizers>
+                <controls:Expander.IsVisible>
+                    <MultiBinding Converter="{StaticResource AllTrueConverter}">
+                        <Binding Path="IsExpanded" />
+                        <Binding Path="IsEnabled" />
+                    </MultiBinding>
+                </controls:Expander.IsVisible>
+                <Grid>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        HorizontalTextAlignment="Start"
+                        Text="{Binding CardTitle}"
+                        VerticalTextAlignment="Center" />
+                    <Image
+                        HorizontalOptions="End"
+                        Source="expand.png"
+                        VerticalOptions="Start">
+                        <Image.Triggers>
+                            <DataTrigger
+                                Binding="{Binding Source={RelativeSource AncestorType={x:Type controls:Expander}}, Path=IsExpanded}"
+                                TargetType="Image"
+                                Value="True">
+                                <Setter Property="Source" Value="collapse.png" />
+                            </DataTrigger>
+                        </Image.Triggers>
+                    </Image>
+                </Grid>
+                <Grid Grid.Row="1" Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="75" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="75" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Frame
+                        BackgroundColor="{Binding IconBackgroundColor}"
+                        BorderColor="{Binding BorderColor}"
+                        CornerRadius="38"
+                        HeightRequest="60"
+                        HorizontalOptions="Center"
+                        IsClippedToBounds="True"
+                        VerticalOptions="Center"
+                        WidthRequest="60">
+                        <Image
+                            Margin="-20"
+                            Aspect="AspectFill"
+                            HeightRequest="100"
+                            Source="{Binding IconImageSource}"
+                            WidthRequest="100" />
+                    </Frame>
+                    <Label
+                        Grid.RowSpan="2"
+                        Grid.Column="2"
+                        HorizontalOptions="Start"
+                        Text="{Binding CardDescription}" />
+                </Grid>
+            </controls:Expander>
+        </ControlTemplate>
+
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModels:GroupViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout Margin="20">
+        <Label Text="Expanders vanish upon collapse." />
+        <controls:CardViewExpander
+            BorderColor="DarkGray"
+            CardDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla elit dolor, convallis non interdum."
+            CardTitle="John Doe"
+            ControlTemplate="{StaticResource CardViewExpanderControlTemplate}"
+            IconBackgroundColor="SlateGray"
+            IconImageSource="user.png"
+            IsExpanded="True" />
+        <controls:CardViewExpander
+            BorderColor="DarkGray"
+            CardDescription="Phasellus eu convallis mi. In tempus augue eu dignissim fermentum. Morbi ut lacus vitae eros lacinia."
+            CardTitle="Jane Doe"
+            ControlTemplate="{StaticResource CardViewExpanderControlTemplate}"
+            IconBackgroundColor="SlateGray"
+            IconImageSource="user.png"
+            IsExpanded="True" />
+        <controls:CardViewExpander
+            BorderColor="DarkGray"
+            CardDescription="Aliquam sagittis, odio lacinia fermentum dictum, mi erat scelerisque erat, quis aliquet arcu."
+            CardTitle="Monkey"
+            ControlTemplate="{StaticResource CardViewExpanderControlTemplate}"
+            IconBackgroundColor="SlateGray"
+            IconImageSource="user.png"
+            IsExpanded="True" />
+    </StackLayout>
+</ContentPage>

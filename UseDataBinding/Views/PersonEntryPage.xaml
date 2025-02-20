@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="UseDataBinding.Views.PersonEntryPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:UseDataBinding.ViewModels"
+    Title="PersonEntryPage">
+    <ContentPage.BindingContext>
+        <local:PersonCollectionViewModel />
+    </ContentPage.BindingContext>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--  New Button  -->
+        <Button
+            Grid.Row="0"
+            Command="{Binding NewCommand}"
+            HorizontalOptions="Start"
+            Text="New" />
+
+        <!--  Entry Form  -->
+        <Grid Grid.Row="1" IsEnabled="{Binding IsEditing}">
+            <Grid BindingContext="{Binding PersonEdit}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Text="Name: " />
+                <Entry
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Text="{Binding Name}" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Text="Age: " />
+                <StackLayout
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Orientation="Horizontal">
+                    <Stepper Maximum="100" Value="{Binding Age}" />
+                    <Label Text="{Binding Age, StringFormat='{0} years old'}" VerticalOptions="Center" />
+                </StackLayout>
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Text="Skills: " />
+                <Entry
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Text="{Binding Skills}" />
+            </Grid>
+        </Grid>
+
+        <!--  Submit and Cancel Buttons  -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button
+                Grid.Column="0"
+                Command="{Binding SubmitCommand}"
+                Text="Submit"
+                VerticalOptions="Center" />
+            <Button
+                Grid.Column="1"
+                Command="{Binding CancelCommand}"
+                Text="Cancel"
+                VerticalOptions="Center" />
+        </Grid>
+
+        <!--  List of Persons  -->
+        <ListView Grid.Row="3" ItemsSource="{Binding Persons}" />
+    </Grid>
+</ContentPage>

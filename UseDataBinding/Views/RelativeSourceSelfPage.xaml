@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="UseDataBinding.Views.RelativeSourceSelfPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:UseDataBinding.Controls"
+    Title="RelativeSourceSelfPage"
+    BindingContext="{Binding Source={RelativeSource Self}, Path=Person}">
+    <StackLayout Margin="10">
+        <!--
+            In this example, the WidthRequest property is set to a fixed value, and the HeightRequest property binds to the WidthRequest property.
+        -->
+        <BoxView
+            HeightRequest="{Binding Source={RelativeSource Self}, Path=WidthRequest}"
+            HorizontalOptions="Center"
+            WidthRequest="200"
+            Color="Red" />
+        <controls:Separator />
+        <!--
+            In this example, the page's BindingContext is bound to its own Person property.
+        -->
+        <Label HorizontalOptions="Center" Text="{Binding Fullname, StringFormat='Name: {0}'}" />
+    </StackLayout>
+</ContentPage>

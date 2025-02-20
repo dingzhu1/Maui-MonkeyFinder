@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="UseDataBinding.Views.ReverseBindingPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="ReverseBindingPage">
+    <StackLayout Padding="10,0">
+
+        <Label
+            x:Name="label"
+            FontSize="80"
+            HorizontalOptions="Center"
+            Text="TEXT"
+            VerticalOptions="Center" />
+
+        <Slider
+            x:Name="slider"
+            VerticalOptions="Center"
+            Value="{Binding Source={x:Reference label}, Path=Opacity}" />
+    </StackLayout>
+</ContentPage>

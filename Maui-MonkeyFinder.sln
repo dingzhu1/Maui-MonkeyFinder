@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UseBehaviors", "UseBehavior
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UseControlTemplate", "UseControlTemplate\UseControlTemplate.csproj", "{259C6C69-DBE3-4812-84CD-CD772B112D93}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UseDataBinding", "UseDataBinding\UseDataBinding.csproj", "{BA3AE0FB-16AF-4F2F-9122-E25282F6CD08}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,12 @@ Global
 		{259C6C69-DBE3-4812-84CD-CD772B112D93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{259C6C69-DBE3-4812-84CD-CD772B112D93}.Release|Any CPU.Build.0 = Release|Any CPU
 		{259C6C69-DBE3-4812-84CD-CD772B112D93}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{BA3AE0FB-16AF-4F2F-9122-E25282F6CD08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA3AE0FB-16AF-4F2F-9122-E25282F6CD08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA3AE0FB-16AF-4F2F-9122-E25282F6CD08}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{BA3AE0FB-16AF-4F2F-9122-E25282F6CD08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA3AE0FB-16AF-4F2F-9122-E25282F6CD08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA3AE0FB-16AF-4F2F-9122-E25282F6CD08}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
