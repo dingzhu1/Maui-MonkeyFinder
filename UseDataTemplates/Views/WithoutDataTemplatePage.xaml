@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="UseDataTemplates.Views.WithoutDataTemplatePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:UseDataTemplates"
+    Title="WithoutDataTemplatePage">
+    <StackLayout Margin="20">
+        <Label
+            FontAttributes="Bold"
+            HorizontalOptions="Center"
+            Text="CollectionView without a Data Template" />
+        <CollectionView Margin="0,20,0,0">
+            <CollectionView.ItemsSource>
+                <x:Array Type="{x:Type local:Person}">
+                    <local:Person
+                        Name="Steve"
+                        Age="21"
+                        Location="USA" />
+                    <local:Person
+                        Name="John"
+                        Age="37"
+                        Location="USA" />
+                    <local:Person
+                        Name="Tom"
+                        Age="42"
+                        Location="UK" />
+                    <local:Person
+                        Name="Lucas"
+                        Age="29"
+                        Location="Germany" />
+                    <local:Person
+                        Name="Tariq"
+                        Age="39"
+                        Location="UK" />
+                    <local:Person
+                        Name="Jane"
+                        Age="30"
+                        Location="USA" />
+                </x:Array>
+            </CollectionView.ItemsSource>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

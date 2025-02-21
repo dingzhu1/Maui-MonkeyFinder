@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="UseDataTemplates.Views.WithDataTemplateSelectorPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:UseDataTemplates"
+    Title="WithDataTemplateSelectorPage">
+    <ContentPage.Resources>
+        <DataTemplate x:Key="validPersonTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*" />
+                    <ColumnDefinition Width="0.3*" />
+                    <ColumnDefinition Width="0.3*" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    FontAttributes="Bold"
+                    Text="{Binding Name}"
+                    TextColor="Green" />
+                <Label
+                    Grid.Column="1"
+                    Text="{Binding DateOfBirth, StringFormat='{0:d}'}"
+                    TextColor="Green" />
+                <Label
+                    Grid.Column="2"
+                    HorizontalTextAlignment="End"
+                    Text="{Binding Location}"
+                    TextColor="Green" />
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="invalidPersonTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*" />
+                    <ColumnDefinition Width="0.3*" />
+                    <ColumnDefinition Width="0.3*" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    FontAttributes="Bold"
+                    Text="{Binding Name}"
+                    TextColor="Red" />
+                <Label
+                    Grid.Column="1"
+                    Text="{Binding DateOfBirth, StringFormat='{0:d}'}"
+                    TextColor="Red" />
+                <Label
+                    Grid.Column="2"
+                    HorizontalTextAlignment="End"
+                    Text="{Binding Location}"
+                    TextColor="Red" />
+            </Grid>
+        </DataTemplate>
+        <local:PersonDataTemplateSelector
+            x:Key="personDataTemplateSelector"
+            InvalidTemplate="{StaticResource invalidPersonTemplate}"
+            ValidTemplate="{StaticResource validPersonTemplate}" />
+    </ContentPage.Resources>
+
+    <StackLayout Margin="20">
+        <Label
+            FontAttributes="Bold"
+            HorizontalOptions="Center"
+            Text="CollectionView with a DataTemplateSelector" />
+        <CollectionView
+            x:Name="collectionView"
+            Margin="0,20,0,0"
+            ItemTemplate="{StaticResource personDataTemplateSelector}" />
+    </StackLayout>
+</ContentPage>
